@@ -1,8 +1,20 @@
 job-application
 -----
 
-This is the generated Servant Api skeleton
+serve an endpoint to receive job applications from
+candidates + give current employees an authorized
+endpoint to query the applications
 
-It includes `Api` `Types` and `Server` along with `Main` to actually run the
-server implementation
+`GET /careers`
+`POST /careers`
+
+```
+{
+  "name": "You",
+  "email": "you@aol.com",
+  "resume": "www.linktoresume.net",
+  "github": "github.com/you", // optional
+  "website": "you.me" // optional
+}
+```
 
