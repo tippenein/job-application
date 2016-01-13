@@ -15,14 +15,14 @@ applicationAPI :: Proxy ApplicationAPI
 applicationAPI = Proxy
 
 type ApplicationAPI =
-       GetApplications
-  :<|> PostApplication
+       GetApplicants
+  :<|> PostApplicant
 
-type GetApplications =
+type GetApplicants =
      "careers"
-  :> Get '[JSON] [Application]
+  :> Get '[JSON] [Applicant]
 
-type PostApplication =
+type PostApplicant =
      "careers"
-  :> ReqBody '[JSON] Application
-  :> Post '[JSON] ApplicationResponse
+  :> ReqBody '[JSON] Applicant
+  :> Post '[JSON] ApplicantResponse
