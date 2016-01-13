@@ -19,7 +19,9 @@ server =
   :<|> postApplicant
 
 getApplicants :: EitherT ServantErr IO [Types.Applicant]
-getApplicants = return []
+getApplicants = do
+  applicants <- liftIO $ Database.selectApplicants(100)
+  return $ applicants
 
 postApplicant :: Types.Applicant -> EitherT ServantErr IO Types.ApplicantResponse
 postApplicant a = do

@@ -30,7 +30,7 @@ run action = do
 getApplicants' :<|> postApplicant' =
   client applicationAPI host
     where
-      host = BaseUrl Https "localhost" 8081
+      host = BaseUrl Http "localhost" 8081
 
-getApplicants = runEitherT $ getApplicants'
-postApplicant ap = runEitherT $ postApplicant' ap
+getApplicants = run getApplicants'
+postApplicant ap = run $ postApplicant' ap
