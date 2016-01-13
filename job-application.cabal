@@ -24,8 +24,11 @@ library
       JobApplication
   build-depends:
       base ==4.*
+    , acid-state
     , aeson
     , either
+    , mtl
+    , safecopy
     , servant >= 0.4
     , servant-client >= 0.4
     , servant-server >= 0.4
@@ -44,8 +47,11 @@ executable job-application
   build-depends:
       base -any
     , job-application -any
+    , acid-state
     , aeson
     , either
+    , mtl
+    , safecopy
     , servant >= 0.4
     , servant-client >= 0.4
     , servant-server >= 0.4

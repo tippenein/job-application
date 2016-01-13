@@ -10,19 +10,23 @@ import Network.Wai.Middleware.RequestLogger
 import Servant
 
 import JobApplication.API as API
+import JobApplication.Database as Database
 import JobApplication.Types as Types
 
 server :: Server ApplicationAPI
 server =
-       getApplications
-  :<|> postApplication
+       getApplicants
+  :<|> postApplicant
 
-getApplications :: EitherT ServantErr IO [Types.Application]
-getApplications = return []
+getApplicants :: EitherT ServantErr IO [Types.Applicant]
+getApplicants = do
+  applicants <- liftIO $ Database.selectApplicants(100)
+  return $ applicants
 
-postApplication :: Types.Application -> EitherT ServantErr IO Types.ApplicationResponse
-postApplication a =
-  return $ Types.ApplicationResponse "thanks"
+postApplicant :: Types.Applicant -> EitherT ServantErr IO Types.ApplicantResponse
+postApplicant a = do
+  liftIO $ Database.insertApplicant(a)
+  return $ Types.ApplicantResponse "thanks"
 
 app :: Wai.Application
 app = logStdout (serve API.applicationAPI server)

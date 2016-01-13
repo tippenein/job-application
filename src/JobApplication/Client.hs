@@ -3,8 +3,8 @@
 
 module JobApplication.Client
   (
-    getApplications
-  , postApplication
+    getApplicants
+  , postApplicant
   ) where
 
 import Control.Monad.Trans.Either
@@ -27,10 +27,10 @@ run action = do
         Left message -> error (show message)
         Right x -> return x
 
-getApplications' :<|> postApplication' =
+getApplicants' :<|> postApplicant' =
   client applicationAPI host
     where
-      host = BaseUrl Https "localhost" 8081
+      host = BaseUrl Http "localhost" 8081
 
-getApplications = runEitherT $ getApplications'
-postApplication ap = runEitherT $ postApplication' ap
+getApplicants = run getApplicants'
+postApplicant ap = run $ postApplicant' ap
